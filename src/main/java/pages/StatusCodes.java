@@ -12,10 +12,10 @@ public class StatusCodes {
     ElementsCollection statusCode301Entity = $$(By.xpath("//a[contains(text(),'301')]"));
     ElementsCollection statusCode404Entity = $$(By.xpath("//a[contains(text(),'404')]"));
     ElementsCollection statusCode500Entity = $$(By.xpath("//a[contains(text(),'500')]"));
-    SelenideElement statusTextEntity = $(By.xpath("//div[@class='example']"));
+    SelenideElement statusTextEntity = $(By.xpath("//div[@class='example']/*[contains(text(),'%s')]"));
 
-    public void textPage(){
-        System.out.println(statusTextEntity.getText());
+    public boolean textPage(String value){
+       return $(By.xpath("//div[@class='example']/*[contains(text(),"+value+")]")).exists();
     }
     private void openStatusCodes200Entity() {
         statusCode200Entity.get(0).click();

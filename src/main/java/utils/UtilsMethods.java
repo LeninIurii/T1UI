@@ -15,4 +15,20 @@ public class UtilsMethods {
     public static String randomNumberString(int length) {
         return randomString("0123456789", length);
     }
+
+    public static String randomCyrLowerString(int length) {
+        return randomString("абвгдеёжзийклмнопрстуфхцчшщъыьэюя", length);
+    }
+
+    public static String randomLatLowerString(int length) {
+        return randomString("abcdefghijklmnopqrstuvwxyz", length);
+    }
+
+    public static String randomLatUpperString(int length) {
+        return randomString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", length);
+    }
+    public static String randomSpetialSymbolsString(int length) {
+        return randomString("@#$%^&*! ", length);
+    }
+
 }

@@ -57,7 +57,11 @@ dependencies {
     // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
     testImplementation("org.aspectj:aspectjweaver:1.9.22")
 
+// https://mvnrepository.com/artifact/io.qameta.allure/allure-selenide
+    implementation("io.qameta.allure:allure-selenide:2.26.0")
 
+// https://mvnrepository.com/artifact/org.testng/testng
+    implementation("org.testng:testng:7.10.0")
 
 }
 

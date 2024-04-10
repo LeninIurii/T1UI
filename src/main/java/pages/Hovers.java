@@ -25,4 +25,14 @@ public class Hovers {
             System.out.println(elementCollection.get(i).shouldBe(Condition.visible).getText());
         }
     }
+    @Step("Получение элемента #{a}")
+    public String getHok(int a){
+      return   elementCollection.get(a-1).shouldBe(Condition.visible).getText();
+    }
+
+    @Step("Наводимся на эллемент #{a}")
+    public void moveOn(WebDriver webDriver,int a) {
+        Actions actions = new Actions(webDriver);
+        actions.moveToElement(collection.get(a-1)).perform();
+    }
 }

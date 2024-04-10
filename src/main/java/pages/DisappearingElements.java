@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$$;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,6 +26,13 @@ public class DisappearingElements {
         }
         fail("Failed to display 5 elements after 10 attempts");
     }
+    //todo кудато вынести
+    @Step("ПРОВЕРКА. Disappearing Elements колличество эллементов соответствует переданному значению {size}")
+    public void checkDisappearingElementsEquality(int size) {
+        Assert.assertEquals(elementsCollection.size(), size);
+
+    }
+
 }
 
 

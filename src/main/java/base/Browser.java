@@ -1,7 +1,9 @@
 package base;
 
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,13 +19,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
+
 public class Browser {
     protected Logger log;
     private String implicitlyTimeout;
     protected WebDriver webDriver;
+
     @BeforeAll
     static void setupAll() {
         WebDriverManager.chromedriver().setup();
+
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                .screenshots(true)
+                .savePageSource(true));
+
     }
 
     /**
@@ -32,10 +41,7 @@ public class Browser {
      **/
     @BeforeEach
     void setUp() {
-        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\lenin\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-      //  WebDriverManager.chromedriver().setup(); // Устанавливаем ChromeDriver
         webDriver = new ChromeDriver();
-     //  webDriver = WebDriverManager.chromedriver().create();
 
         WebDriverRunner.setWebDriver(webDriver);
         webDriver.manage().window().maximize();
@@ -55,6 +61,7 @@ public class Browser {
     public Long getImplicitlyWait() {
         return Long.valueOf(this.implicitlyTimeout);
     }
+
     public boolean setImplicitlyWait(String seconds) {
         Boolean result = true;
 
@@ -71,11 +78,11 @@ public class Browser {
 
         return result;
     }
+
     public boolean isElementDisplay(final By by) {
         boolean res = true;
         WebDriverWait wait = new WebDriverWait(this.webDriver, Duration.ofSeconds(15));
-        long q = this.getImplicitlyWait();
-        this.webDriver.manage().timeouts().implicitlyWait( Duration.ofSeconds(15));
+        this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
         try {
             wait.until(new ExpectedCondition<Boolean>() {
@@ -101,7 +108,7 @@ public class Browser {
             res = false;
         }
 
-        this.webDriver.manage().timeouts().implicitlyWait( Duration.ofSeconds(15));
+        this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         return res;
     }
 
@@ -133,7 +140,8 @@ public class Browser {
         try {
             log.debug("Wait [" + seconds + "] seconds...");
             Thread.sleep((long) (seconds * 1000.0D));
-        } catch (Exception var4) {}
+        } catch (Exception var4) {
+        }
     }
 
     public WebDriver getWebDriver() {

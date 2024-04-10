@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -24,4 +25,10 @@ public class NotificationMessage {
         }
         while (!notice2.exists());
     }
+
+    public void notificationSuccess(){
+//        Assert.assertEquals(notice2.shouldBe(Condition.visible).text(),"Action successful\n×");
+        Assert.assertTrue(notice2.exists());
+    }
+
 }
