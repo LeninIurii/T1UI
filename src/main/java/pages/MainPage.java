@@ -16,6 +16,10 @@ public class MainPage extends BasePage {
     ElementsCollection notificationMessageElementsEntity = $$(By.xpath("//a[text()='Notification Messages']"));
     ElementsCollection addRemoveElementsEntity = $$(By.xpath("//a[text()='Add/Remove Elements']"));
     ElementsCollection statusCodesElementsEntity = $$(By.xpath("//a[text()='Status Codes']"));
+    ElementsCollection dragAndDropElementsEntity = $$(By.xpath("//a[text()='Drag and Drop']"));
+    ElementsCollection contextMenuElementsEntity = $$(By.xpath("//a[text()='Context Menu']"));
+    ElementsCollection infiniteScrollElementsEntity = $$(By.xpath("//a[text()='Infinite Scroll']"));
+    ElementsCollection keyPressesElementsEntity = $$(By.xpath("//a[text()='Key Presses']"));
 
     private void openCheckboxesEntity() {
         checkboxesEntity.get(0).click();
@@ -44,8 +48,25 @@ public class MainPage extends BasePage {
     private void openAddRemoveElementsEntity() {
         addRemoveElementsEntity.get(0).click();
     }
+
     private void openStatusCodesElementsEntity() {
         statusCodesElementsEntity.get(0).click();
+    }
+
+    private void openDragandDropElementsEntity() {
+        dragAndDropElementsEntity.get(0).click();
+    }
+
+    private void openContextmenuElementsEntity() {
+        contextMenuElementsEntity.get(0).click();
+    }
+
+    private void openInfiniteScrollElementsEntity() {
+        infiniteScrollElementsEntity.get(0).click();
+    }
+
+    private void openKeyPressesElementsEntity() {
+        keyPressesElementsEntity.get(0).click();
     }
 
     public void openTab(String name) {
@@ -74,6 +95,25 @@ public class MainPage extends BasePage {
             case "Status Codes":
                 openStatusCodesElementsEntity();
                 break;
+
+            case "Drag and Drop":
+                openDragandDropElementsEntity();
+                break;
+
+            case "Context menu":
+                openContextmenuElementsEntity();
+                break;
+
+            case "Key Presses":
+                openKeyPressesElementsEntity();
+                break;
+            case "Infinite Scroll":
+                openInfiniteScrollElementsEntity();
+                break;
+
+
+            default:
+                throw new IllegalArgumentException("Ой ой не то имечко голубчик, а вот это вот не надо " + name);
         }
 
     }
